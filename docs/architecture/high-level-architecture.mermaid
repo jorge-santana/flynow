@@ -1,0 +1,95 @@
+graph TB
+    subgraph "Usuário / Frontend"
+        A[Usuário - Browser/Mobile]
+        B[CloudFront - CDN]
+        C[ALB - Application Load Balancer]
+        D[ACM - Certificados TLS]
+        E[WAF - Web Application Firewall]
+    end
+    
+    subgraph "Backend / API - EKS Cluster"
+        F[Next.js Pods]
+        G[HPA + Cluster Autoscaler]
+        H[Redis/ElastiCache - Cache]
+        I[Adapter APIs Agências]
+    end
+    
+    subgraph "Banco de Dados"
+        J[(RDS Postgres Multi-AZ)]
+        K[AWS Secrets Manager]
+        L[Backup/Snapshots Cross-Region]
+    end
+    
+    subgraph "Integração Agências"
+        M[API Agência 1 - REST/JSON]
+        N[API Agência 2 - REST/JSON]
+        O[API Agência N - REST/JSON]
+        P[Circuit Breaker + Retry]
+    end
+    
+    subgraph "Observabilidade"
+        Q[Fluent Bit DaemonSet]
+        R[CloudWatch Logs]
+        S[CloudWatch Metrics]
+        T[AWS X-Ray / OpenTelemetry]
+        U[Alertas - Slack/PagerDuty/Email]
+    end
+    
+    subgraph "CI/CD"
+        V[Monorepo - Git]
+        W[Pipeline Build/Test]
+        X[ECR - Container Registry]
+        Y[Deploy Dev/Staging/Prod]
+    end
+    
+    subgraph "Segurança"
+        Z[Network Policies]
+        AA[PodDisruptionBudget]
+        AB[LGPD - Mascaramento Logs]
+    end
+    
+    A -->|HTTPS| B
+    B -->|TLS| C
+    C -.->|Certificado| D
+    C -.->|Regras| E
+    C -->|Requisição| F
+    
+    F -->|Consulta Cache| H
+    F -->|Credenciais| K
+    F -->|Logs/Auditoria| J
+    F -->|Chamadas API| I
+    
+    G -.->|Escala| F
+    
+    I -->|Timeout 1.2s| P
+    P -->|REST/JSON| M
+    P -->|REST/JSON| N
+    P -->|REST/JSON| O
+    
+    J -.->|Backup| L
+    
+    F -->|Logs| Q
+    Q -->|Stream| R
+    F -->|Métricas| S
+    F -->|Traces| T
+    S -->|Alertas| U
+    T -->|Alertas| U
+    
+    V -->|Push| W
+    W -->|Build Image| X
+    X -->|Deploy| Y
+    Y -->|Rolling Update| F
+    
+    Z -.->|Isolamento| F
+    AA -.->|Disponibilidade| F
+    AB -.->|Compliance| Q
+    
+    style A fill:#e1f5ff
+    style F fill:#fff4e1
+    style J fill:#f0e1ff
+    style M fill:#e1ffe1
+    style N fill:#e1ffe1
+    style O fill:#e1ffe1
+    style R fill:#ffe1e1
+    style S fill:#ffe1e1
+    style T fill:#ffe1e1
