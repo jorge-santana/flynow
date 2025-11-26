@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build-and-lint:
+    name: Build and Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar código
+        run: echo "Iniciando o workflow de CI para verificar o código..."
+
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Rodar lint
+        run: |
+          echo "Executando lint..."
+          npm run lint
+
+      - name: Rodar build
+        run: |
+          echo "Executando build..."
+          npm run build
+
+      - name: Finalizar workflow
+        run: echo "Workflow de CI concluído com sucesso!"
