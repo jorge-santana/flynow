@@ -29,9 +29,14 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Rodar prettier
+        run: |
+          echo "Executando prettier... (estética)"
+          npm run prettier:check
+
       - name: Rodar lint
         run: |
-          echo "Executando lint..."
+          echo "Executando lint... (qualidade)"
           npm run lint
 
       - name: Rodar build
