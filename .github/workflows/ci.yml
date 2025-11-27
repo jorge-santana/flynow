@@ -49,5 +49,10 @@ jobs:
           echo "Executando build..."
           npm run build
 
+      - name: Servir aplicação
+        run: |
+          echo "Executando servidor da aplicação em background..."
+          npm run start
+
       - name: Finalizar workflow
         run: echo "Workflow de CI concluído com sucesso!"
