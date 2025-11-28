@@ -42,12 +42,23 @@ jobs:
       - name: Rodar vitest
         run: |
           echo "Executando vitest... (testes unitários)"
-          npm run test:run
+          npm run test:unit
 
       - name: Rodar build
         run: |
           echo "Executando build..."
           npm run build
+
+      - name: Servir aplicação
+        run: |
+          echo "Executando servidor da aplicação em background..."
+          npm run start &
+          sleep 7
+
+      - name: Rodar vitest
+        run: |
+          echo "Executando vitest... (testes de integração)"
+          npm run test:integration
 
       - name: Finalizar workflow
         run: echo "Workflow de CI concluído com sucesso!"
