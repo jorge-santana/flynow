@@ -235,7 +235,10 @@ export async function GET(req: NextRequest) {
 
   // Return 400 if required query parameters are missing
   if (!from || !to || !date) {
-    return NextResponse.json({ error: 'Missing required query parameters' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'Missing required query parameters' },
+      { status: 400 },
+    );
   }
 
   // Filter flights based on query parameters

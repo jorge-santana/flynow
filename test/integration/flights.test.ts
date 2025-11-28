@@ -5,7 +5,9 @@ describe('GET /api/flights', () => {
   const baseUrl = 'http://localhost:3000';
 
   it('should return a list of flights with correct structure', async () => {
-    const response = await request(baseUrl).get('/api/flights?from=GRU&to=JFK&date=2025-09-01');
+    const response = await request(baseUrl).get(
+      '/api/flights?from=GRU&to=JFK&date=2025-09-01',
+    );
 
     expect(response.status).toBe(200);
     expect(response.body).toMatchObject([
@@ -33,7 +35,9 @@ describe('GET /api/flights', () => {
   });
 
   it('should return 404 if no flights match the criteria', async () => {
-    const response = await request(baseUrl).get('/api/flights?from=XYZ&to=ABC&date=2025-12-31');
+    const response = await request(baseUrl).get(
+      '/api/flights?from=XYZ&to=ABC&date=2025-12-31',
+    );
 
     expect(response.status).toBe(404);
     expect(response.body).toMatchObject({
