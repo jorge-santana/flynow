@@ -212,17 +212,6 @@ const flights: Flight[] = [
     price: 540,
     currency: 'USD',
   },
-  {
-    id: '20',
-    airline: 'Airline T',
-    flightNumber: 'TT717',
-    from: 'JFK',
-    to: 'LAX',
-    departureTime: '2025-09-19T22:00:00Z',
-    arrivalTime: '2025-09-19T06:00:00Z',
-    price: 610,
-    currency: 'USD',
-  },
 ];
 
 // Route handler for GET requests
