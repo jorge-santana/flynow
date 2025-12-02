@@ -34,3 +34,33 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Commit Validation
+
+This project uses [Husky](https://typicode.github.io/husky) and [Commitlint](https://commitlint.js.org/) to enforce commit message standards based on [Conventional Commits](https://www.conventionalcommits.org/).
+
+### How It Works
+
+- Before each commit, Husky runs Commitlint to validate the commit message.
+- If the message does not follow the Conventional Commits format, the commit is rejected.
+
+### Examples
+
+#### Valid Commit Messages
+
+- `feat: add new feature`
+- `fix: resolve login bug`
+- `docs: update README`
+
+#### Invalid Commit Messages
+
+- `new feature`
+- `fix login bug`
+
+### Setup
+
+Ensure dependencies are installed and Husky hooks are set up by running:
+
+```bash
+npm install
+```
