@@ -24,6 +24,19 @@ jobs:
         run: npm ci
 
       - name: Run semantic-release
+        id: semantic_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run release
+        run: |
+          npm run release | tee release.log
+
+      - name: Extract tag from semantic-release log
+        id: extract_tag
+        run: |
+          TAG=$(grep -oE 'Created tag v[0-9]+\.[0-9]+\.[0-9]+' release.log | awk '{print $3}')
+          echo "::set-output name=tag::$TAG"
+
+      - name: Build Docker image
+        if: steps.extract_tag.outputs.tag
+        run: |
+          docker build -t flynow:${{ steps.extract_tag.outputs.tag }} .
