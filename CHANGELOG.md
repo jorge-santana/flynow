@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/jorge-santana/flynow/compare/v1.0.0...v1.1.0) (2025-12-03)
+
+
+### Features
+
+* add a new feature ([aa0e3b4](https://github.com/jorge-santana/flynow/commit/aa0e3b4baf814bfacad151bfb25e62fed8ec1904))
+* add a new feature ([e6224a2](https://github.com/jorge-santana/flynow/commit/e6224a28202b227908042cc61738a50de97c0259))
+* adiciona o dockerfile ao projeto e ao workflow release ([40e4501](https://github.com/jorge-santana/flynow/commit/40e450123c3c1c74198bae40e000668882636719))
+
 # 1.0.0 (2025-12-02)
 
 
