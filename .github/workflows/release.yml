@@ -34,9 +34,14 @@ jobs:
         id: extract_tag
         run: |
           TAG=$(grep -oE 'Created tag v[0-9]+\.[0-9]+\.[0-9]+' release.log | awk '{print $3}')
-          echo "::set-output name=tag::$TAG"
+          if [ -z "$TAG" ]; then
+            echo "No tag created by semantic-release. Skipping Docker build."
+          else
+            echo "Tag found: $TAG"
+            echo "tag=$TAG" >> $GITHUB_ENV
+          fi
 
       - name: Build Docker image
-        if: steps.extract_tag.outputs.tag
+        if: env.tag
         run: |
-          docker build -t flynow:${{ steps.extract_tag.outputs.tag }} .
+          docker build -t flynow:${{ env.tag }} .
