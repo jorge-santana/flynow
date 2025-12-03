@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jorge-santana/flynow/compare/v1.1.0...v1.1.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* assegura a identificação da geração da tag \n\n Ajuste feito para remover o feedback Warning: The set-output command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/ ([132447d](https://github.com/jorge-santana/flynow/commit/132447dfc16937104e88a456bc9f4fa82d97110a))
+
 # [1.1.0](https://github.com/jorge-santana/flynow/compare/v1.0.0...v1.1.0) (2025-12-03)
 
 
