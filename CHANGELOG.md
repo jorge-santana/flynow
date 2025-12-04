@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jorge-santana/flynow/compare/v1.1.1...v1.2.0) (2025-12-04)
+
+
+### Features
+
+* adiciona a publicação da imagem no dockerhub ([d1190eb](https://github.com/jorge-santana/flynow/commit/d1190ebc62705986bcc69f15e528aa60e6ad0323))
+
 ## [1.1.1](https://github.com/jorge-santana/flynow/compare/v1.1.0...v1.1.1) (2025-12-03)
 
 
