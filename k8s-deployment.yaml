@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flynow-deployment
+  namespace: flynow
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flynow
+  template:
+    metadata:
+      labels:
+        app: flynow
+    spec:
+      containers:
+        - name: flynow-container
+          image: jorgeargusacademy/flynow:v1.2.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: 'production'
