@@ -5,6 +5,12 @@ terraform {
       version = "6.27.0"
     }
   }
+  backend "s3" {
+    bucket = "flynow-terraform" 
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+    profile = "default"
+  }
 }
 
 provider "aws" {
