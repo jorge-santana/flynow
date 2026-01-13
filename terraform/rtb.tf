@@ -1,3 +1,5 @@
+// ------------------ subnets públicas
+
 resource "aws_route_table" "tf_flynow_rtb_public" {
   vpc_id = aws_vpc.vpc.id
 
@@ -19,4 +21,34 @@ resource "aws_route_table_association" "tf_flynow_association_us_east_1a_public1
 resource "aws_route_table_association" "tf_flynow_association_us_east_1b_public2" {
   subnet_id      = aws_subnet.tf_flynow-subnet-public2-us-east-1b.id
   route_table_id = aws_route_table.tf_flynow_rtb_public.id
+}
+
+// ------------------ subnets privadas
+
+resource "aws_route_table" "tf_flynow_rtb_private1_us_east_1a" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "tf_flynow_rtb_private1_us_east_1a"
+  }
+}
+
+resource "aws_route_table_association" "tf_flynow_association_us_east_1a_private1" {
+  subnet_id      = aws_subnet.tf_flynow-subnet-private1-us-east-1a.id
+  route_table_id = aws_route_table.tf_flynow_rtb_private1_us_east_1a.id
+}
+
+// --
+
+resource "aws_route_table" "tf_flynow_rtb_private2_us_east_1b" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "tf_flynow_rtb_private2_us_east_1b"
+  }
+}
+
+resource "aws_route_table_association" "tf_flynow_association_us_east_1b_private2" {
+  subnet_id      = aws_subnet.tf_flynow-subnet-private2-us-east-1b.id
+  route_table_id = aws_route_table.tf_flynow_rtb_private2_us_east_1b.id
 }
