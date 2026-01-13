@@ -28,6 +28,11 @@ resource "aws_route_table_association" "tf_flynow_association_us_east_1b_public2
 resource "aws_route_table" "tf_flynow_rtb_private1_us_east_1a" {
   vpc_id = aws_vpc.vpc.id
 
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.tf_flynow_ngw_public1_us_east_1a.id
+  }
+
   tags = {
     Name = "tf_flynow_rtb_private1_us_east_1a"
   }
@@ -42,6 +47,11 @@ resource "aws_route_table_association" "tf_flynow_association_us_east_1a_private
 
 resource "aws_route_table" "tf_flynow_rtb_private2_us_east_1b" {
   vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.tf_flynow_ngw_public2_us_east_1b.id
+  }
 
   tags = {
     Name = "tf_flynow_rtb_private2_us_east_1b"
